@@ -1,6 +1,8 @@
-# Science_Reading_Book_Downloader
+![Science_Reading_Book_Downloader](https://socialify.git.ci/Senkita/Science_Reading_Book_Downloader/image?description=1&font=Bitter&language=1&owner=1&pattern=Solid&theme=Light)
 
 ## Introduction
+
+> 前情提要：[[Python] 顺着前文思路，借机水一段小爬虫](https://www.52pojie.cn/thread-1562830-1-1.html)
 
 自用爬虫，用于下载科学文库电子书。
 
