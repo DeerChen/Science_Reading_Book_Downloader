@@ -26,10 +26,10 @@ pip install requests pillow rich pysimplegui pyinstaller pycrypto
 
 * [Requests](https://github.com/psf/requests)用于爬虫请求
 * [Pillow](https://github.com/python-pillow/Pillow)用于PDF生成
-* [Rich](https://github.com/willmcgugan/rich/)用于命令行进度条展示
+* [Rich](https://github.com/willmcgugan/rich)用于命令行进度条展示
 * [PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI)用于GUI界面
-* [PyInstaller](https://github.com/pyinstaller/pyinstaller/)用于打包成exe
-* [PyCrypto](https://github.com/pycrypto/pycrypto/)用于PyInstaller打包加密
+* [PyInstaller](https://github.com/pyinstaller/pyinstaller)用于打包成exe
+* [PyCrypto](https://github.com/pycrypto/pycrypto)用于PyInstaller打包加密
 
 ## Usage
 
@@ -38,13 +38,13 @@ pip install requests pillow rich pysimplegui pyinstaller pycrypto
 python main.py
 
 # 打包成GUI程序
-pyinstaller -F -w --key 'passwd' --hidden-import pillow --hidden-imoprt requests --hidden-import pysimplegui -n 科学文库电子书下载器 -i icon.ico --clean --win-private-assemblies -y  main.py
+pyinstaller -F -w --key 'passwd' --hidden-import pillow --hidden-import requests --hidden-import pysimplegui -n 科学文库电子书下载器 -i icon.ico --clean --win-private-assemblies -y  main.py
 ```
 
 ## Maintainers
 
-[Senkita](https://github.com/Senkita/)
+[Senkita](https://github.com/Senkita)
 
 ## License
 
-[MIT](https://github.com/Senkita/Science_Reading_Book_Downloader/blob/main/LICENSE) © [Senkita](https://github.com/Senkita/)
+[MIT](https://github.com/Senkita/Science_Reading_Book_Downloader/blob/main/LICENSE) © [Senkita](https://github.com/Senkita)
