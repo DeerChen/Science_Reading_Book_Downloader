@@ -3,12 +3,12 @@ Description: 界面
 Author: Senkita
 Date: 2021-12-22 12:17:30
 LastEditors: Senkita
-LastEditTime: 2021-12-22 19:24:21
+LastEditTime: 2022-02-19 16:14:31
 '''
 from types import FunctionType
-from typing import Union
+from typing import Tuple, Union
 import PySimpleGUI as sg
-from src.Tools import verification
+from src.Tools.Tools import verification
 
 
 class Interface:
@@ -22,12 +22,14 @@ class Interface:
         ]
 
     # 主体窗口
-    def main_display(self) -> Union[str, None]:
+    def main_display(self) -> Union[Tuple[str, str], None]:
         main_layout = [
             [
+                [sg.T('请输入book_id：', tooltip='book_id请在书籍页地址栏中查找'), sg.I()],
                 [
-                    sg.T('请输入book_id：', tooltip='book_id请在书籍页地址栏中查找'),
-                    sg.I(),
+                    sg.T('请选择缩放比：', tooltip='缩放比越大，则图页越清晰，但书籍体积也相应越大，爬取时间对应增长'),
+                    sg.Combo([100, 150], default_value=150),
+                    sg.T('%'),
                 ],
                 [sg.Submit('下载'), sg.Cancel('退出')],
             ]
@@ -37,7 +39,7 @@ class Interface:
         if event == '下载':
             main_window.close()
             if verification(value[0]):
-                return value[0]
+                return value[0], value[1]
             else:
                 sg.Popup('输入有误，请重新输入！')
                 self.main_display()
@@ -56,7 +58,7 @@ class Interface:
             notice_window.close()
 
     # 用户界面
-    def display(self) -> Union[str, None]:
+    def display(self) -> Union[Tuple[str, str], None]:
         return self.notice_display(self.main_display)
 
     # 进度条
