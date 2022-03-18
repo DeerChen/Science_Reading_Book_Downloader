@@ -3,13 +3,12 @@ Description: 爬虫主体
 Author: Senkita
 Date: 2021-12-20 23:41:21
 LastEditors: Senkita
-LastEditTime: 2022-02-19 22:28:35
+LastEditTime: 2022-03-17 23:06:25
 '''
 import re
 import time
 import json
 import requests
-import multitasking
 from lxml import etree
 from typing import Tuple
 from string import Template
@@ -42,7 +41,6 @@ class Crawler:
         )
 
     # 下载页面图片
-    @multitasking.task
     def download_png(self, page_no: int) -> None:
         url: str = "https://wkobwp.sciencereading.cn/asserts/{}/image/{}/{}?accessToken={}".format(
             self.uuid, page_no, self.scaling, self.accessToken
@@ -129,5 +127,8 @@ class Crawler:
                 r'"pId":"(.*?)".*?"name":"(.*?)".*?bookPageNum=(\d+)'
             )
             catalog_list = re.findall(pattern, response)
+
+            symbol_pattern: re.Pattern = re.compile(r'\W+')
+            book_name = re.sub(symbol_pattern, '_', book_name)
 
         return book_name, book_ISBN, catalog_list

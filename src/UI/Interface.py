@@ -3,7 +3,7 @@ Description: 界面
 Author: Senkita
 Date: 2021-12-22 12:17:30
 LastEditors: Senkita
-LastEditTime: 2022-02-19 16:14:31
+LastEditTime: 2022-03-17 20:28:01
 '''
 from types import FunctionType
 from typing import Tuple, Union
@@ -31,6 +31,18 @@ class Interface:
                     sg.Combo([100, 150], default_value=150),
                     sg.T('%'),
                 ],
+                [
+                    sg.Radio(
+                        text='保留图片文件夹',
+                        group_id='keep_pic_folder',
+                        default=False,
+                    ),
+                    sg.Radio(
+                        text='删除图片文件夹',
+                        group_id='keep_pic_folder',
+                        default=True,
+                    ),
+                ],
                 [sg.Submit('下载'), sg.Cancel('退出')],
             ]
         ]
@@ -39,7 +51,7 @@ class Interface:
         if event == '下载':
             main_window.close()
             if verification(value[0]):
-                return value[0], value[1]
+                return value[0], value[1], value[2]
             else:
                 sg.Popup('输入有误，请重新输入！')
                 self.main_display()

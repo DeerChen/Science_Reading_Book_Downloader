@@ -3,12 +3,11 @@ Description: PDF处理相关
 Author: Senkita
 Date: 2022-02-18 21:49:30
 LastEditors: Senkita
-LastEditTime: 2022-02-19 22:33:32
+LastEditTime: 2022-03-17 23:06:46
 '''
 import os
 import time
 import shutil
-import multitasking
 from PIL import Image
 from PyPDF2 import PdfFileReader as reader, PdfFileWriter as writer
 from src.UI.Interface import Interface
@@ -22,7 +21,11 @@ from src.Tools.Tools import catalog_grading
 
 
 class Handler:
-    def __init__(self, book_id: str, scaling: int = 150) -> None:
+    def __init__(
+        self, book_id: str, scaling: int = 150, keep_pic_folder: bool = False
+    ) -> None:
+        self.keep_pic_folder: bool = keep_pic_folder
+
         self.spider: Crawler = Crawler(book_id, scaling)
 
         self.logger: Logger = Logger(book_id)
@@ -84,6 +87,8 @@ class Handler:
             "./{}.pdf".format(self.book_ISBN),
             "PDF",
             resolution=100.0,
+            quality=100,
+            subsampling=0,
             save_all=True,
             append_images=self.pic_list,
         )
@@ -137,7 +142,6 @@ class Handler:
             self.percentage.update(
                 '{:.3}%'.format(progress / (self.page_num * 2) * 100)
             )
-        multitasking.wait_for_tasks()
 
         self.list_file()
         self.generate_pdf()
@@ -145,6 +149,7 @@ class Handler:
         self.add_bookmark()
 
         # 清理
-        shutil.rmtree(self.dir_name)
+        if not self.keep_pic_folder:
+            shutil.rmtree(self.dir_name)
         os.remove("./{}.pdf".format(self.book_ISBN))
         self.progress_window.close()
