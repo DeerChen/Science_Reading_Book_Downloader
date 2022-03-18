@@ -19,13 +19,13 @@
 7. 为下载图书添加书签
 8. 文件名显示为书名
 9. 支持下载清晰度选择
-10. 支持多线程下载
+10. 支持保留下载图片文件夹
 
 ## Installation
 
 ```bash
 # 依赖项
-pip install requests pillow rich pysimplegui pyinstaller pycrypto beautifulsoup4 pypdf2 lxml multitasking
+pip install requests pillow rich pysimplegui pyinstaller pycrypto beautifulsoup4 pypdf2 lxml
 ```
 
 -   [Requests](https://github.com/psf/Requests)用于爬虫请求
@@ -37,7 +37,6 @@ pip install requests pillow rich pysimplegui pyinstaller pycrypto beautifulsoup4
 -   [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup)用于网页解析
 -   [PyPDF2](https://github.com/mstamy2/PyPDF2)用于 PDF 添加书签
 -   [lxml](https://lxml.de)用于解析 XPath
--   [MultiTasking](https://github.com/ranaroussi/MultiTasking)用于多线程下载
 
 ## Usage
 
@@ -46,7 +45,7 @@ pip install requests pillow rich pysimplegui pyinstaller pycrypto beautifulsoup4
 python main.py
 
 # 打包成GUI程序
-pyinstaller -F -w --key 'passwd' --hidden-import pillow --hidden-import requests --hidden-import pysimplegui --hidden-import beautifulsoup4 --hidden-import pypdf2 --hidden-import lxml --hidden-import multitasking -n 科学文库电子书下载器 -i icon.ico --clean --win-private-assemblies -y  main.py
+pyinstaller -F -w --key 'passwd' --hidden-import pillow --hidden-import requests --hidden-import pysimplegui --hidden-import beautifulsoup4 --hidden-import pypdf2 --hidden-import lxml -n 科学文库电子书下载器 -i icon.ico --clean --win-private-assemblies -y  main.py
 ```
 
 ### Q&A
